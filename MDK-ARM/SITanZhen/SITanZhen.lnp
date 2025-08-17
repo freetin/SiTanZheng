@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"sitanzhen\startup_stm32f103xb.o"
+"sitanzhen\dac8562.o"
+"sitanzhen\main.o"
+"sitanzhen\gpio.o"
+"sitanzhen\spi.o"
+"sitanzhen\stm32f1xx_it.o"
+"sitanzhen\stm32f1xx_hal_msp.o"
+"sitanzhen\stm32f1xx_hal_gpio_ex.o"
+"sitanzhen\stm32f1xx_hal_spi.o"
+"sitanzhen\stm32f1xx_hal.o"
+"sitanzhen\stm32f1xx_hal_rcc.o"
+"sitanzhen\stm32f1xx_hal_rcc_ex.o"
+"sitanzhen\stm32f1xx_hal_gpio.o"
+"sitanzhen\stm32f1xx_hal_dma.o"
+"sitanzhen\stm32f1xx_hal_cortex.o"
+"sitanzhen\stm32f1xx_hal_pwr.o"
+"sitanzhen\stm32f1xx_hal_flash.o"
+"sitanzhen\stm32f1xx_hal_flash_ex.o"
+"sitanzhen\stm32f1xx_hal_exti.o"
+"sitanzhen\system_stm32f1xx.o"
+--strict --scatter "SITanZhen\SITanZhen.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SITanZhen.map" -o SITanZhen\SITanZhen.axf
