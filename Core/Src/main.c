@@ -45,7 +45,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint32_t ch2;
+uint32_t ch1;
+float volt_ch2;
+float volt_ch1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,19 +95,25 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   ADS1220_regs regs = ADS1220_default_regs;
-	uint8_t ini = ADS1220_init(&hspi1, &regs); // Optionally check for failure
-	int32_t ch1 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN1_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
-	int32_t ch2 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN2_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
+  uint8_t ini = ADS1220_init(&hspi1, &regs); // Optionally check for failure
+	ch1 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN1_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
+	ch2 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN2_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
 
 	HAL_Delay(100);
 	DAC8562_Init();
-	DAC8562_SetVoltage(2.5f);
+	DAC8562_SetVoltage(2.45f);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  ch2 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN2_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
+	  volt_ch2=ch2*5.f/8388607;
+	  HAL_Delay(500);
+	  ch1 = ADS1220_read_singleshot_channel(&hspi1, ADS1220_MUX_AIN1_AVSS, &regs, ADS1220_DRDY_GPIO_Port, ADS1220_DRDY_Pin, 100);
+	  volt_ch1=ch1*5.f/8388607;
+	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

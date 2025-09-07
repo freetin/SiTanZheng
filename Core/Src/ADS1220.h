@@ -77,7 +77,7 @@ struct ADS1220_regs_s
 	uint8_t cfg_reg2; // = 0x10;   //Internal 2.048V VREF, 50/60Hz filter, transistors open, IDAC off
 	uint8_t cfg_reg3; // = 0x00;   //IDAC1&2 are disabled, only DRDY signals conversion completion
 } ADS1220_default_regs =
-{ 0x00, 0x04, 0x50, 0x00 };
+{ 0xA0, 0x04, 0x50, 0x00 };//0x50
 
 typedef struct ADS1220_regs_s ADS1220_regs; // Default init
 
